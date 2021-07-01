@@ -20,10 +20,17 @@ It is **authored by** [**Haocong Ying**](yhc.pro@outlook.com), [**Tie Liu**](liu
     - **Workout Counting**:  
         Three categories of workout actions are supported:  
         - Side Lateral Raise  
-
+        <p align="center">
+            <img src="./docs/rec01x.gif" width="320">
+        </p>
         - Y-Stretch  
-
+        <p align="center">
+            <img src="./docs/rec02x.gif" width="320">
+        </p>
         - Squat  
+        <p align="center">
+            <img src="./docs/rec03x.gif" width="320">
+        </p>
 
     - **Workout Scheduling**  
     - **Workout Tips**  
@@ -51,10 +58,20 @@ tflist-dist(A third-party tensorflow C++ interface)
 4. Enjoy using AICoacher! 
 
 ## Quick Start Overview
-Simply start the AICoacher by double-clicking the **RunAICoacher.bat**, and you'll see the GUI of AICoacher:  
+1. Simply start the AICoacher by double-clicking the **RunAICoacher.bat**, and you'll see the GUI of AICoacher:  
 
 <p align="center">
     <img src="./docs/mainUI.png" width="1000">
+</p>
+
+2. To load a video stream, click **Start -> Load video file / Load webcam**, and select a video file or input a webcam index. 
+<p align="center">
+    <img src="./docs/load.png" width="200">
+</p>
+
+3. To select the curriculum, click the combobox here; To start / pause / resume / stop traning, press the buttons at right. 
+<p align="center">
+    <img src="./docs/selection.png" width="400">
 </p>
 
 ## Send Us Feedback!

@@ -2,9 +2,6 @@
 
 [**AICoacher**](https://github.com/liutiel/AICoacher) has represented **an online real-time workout coach system framework which builds up an extensible AI based architecture supporting multiple categories of workout**.
 
-It is **authored by** [**Haocong Ying**](yhc.pro@outlook.com), [**Tie Liu**](liutiel@163.com), [**Mingxin Ai**](a970052666@163.com), [**Jiali Ding**](sy_djl@163.com), [**Yuanyuan Shang**](yyshang@cnu.edu.cn). 
-
-
 ## Contents
 1. [Features](#features)
 2. [Installation](#installation)

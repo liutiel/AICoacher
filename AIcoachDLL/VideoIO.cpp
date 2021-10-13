@@ -104,12 +104,14 @@ void VideoIO::PutPointInfo(PersonPosePara pose, cv::Mat* pInImage)
 	{
 		cv::circle(current_frame,
 			cv::Point(int(pose.pointPose[i * 2 ]), int(pose.pointPose[i * 2+ 1])),
-			8, cv::Scalar(0, 0, 255), -1);
+			8, cv::Scalar(244, 186, 57), -1);
 		std::stringstream output_text;
 		output_text << pose.pointPose[i * 2 ] << ", " << pose.pointPose[i * 2+ 1];
+		/*
 		cv::putText(current_frame, output_text.str(), 
 			cv::Point(int(pose.pointPose[i * 2 ]), int(pose.pointPose[i * 2+ 1])), 
 			cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0, 0, 255), 1, cv::LINE_8, false);
+		*/
 	}
 }
 

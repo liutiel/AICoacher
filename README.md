@@ -19,6 +19,12 @@
         - Y-Stretch  
         - Squat  
 
+        <p align="left">
+            <img src="./docs/rec01x.gif" height="300">
+            <img src="./docs/rec02x.gif" height="300">
+            <img src="./docs/rec03x.gif" height="300">
+        </p>
+
     - **Workout Scheduling**  
     - **Workout Tips**  
 - **System Highlight**:  
@@ -47,17 +53,17 @@ OpenCV 4.5.1
 ## Quick Start Overview
 1. Simply start the AICoacher by double-clicking the **RunAICoacher.bat**, and you'll see the GUI of AICoacher:  
 
-<p align="center">
+<p align="left">
     <img src="./docs/mainUI.png" width="1000">
 </p>
 
 2. To load a video stream, click **Start -> Load video file / Load webcam**, and select a video file or input a webcam index. 
-<p align="center">
+<p align="left">
     <img src="./docs/load.png" width="200">
 </p>
 
 3. To select the curriculum, click the combobox here; To start / pause / resume / stop traning, press the buttons at right. 
-<p align="center">
+<p align="left">
     <img src="./docs/selection.png" width="400">
 </p>
 

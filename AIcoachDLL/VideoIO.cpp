@@ -110,7 +110,7 @@ void VideoIO::PutPointInfo(PersonPosePara pose, cv::Mat* pInImage)
 		/*
 		cv::putText(current_frame, output_text.str(), 
 			cv::Point(int(pose.pointPose[i * 2 ]), int(pose.pointPose[i * 2+ 1])), 
-			cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0, 0, 255), 1, cv::LINE_8, false);
+			cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(244, 186, 57), 1, cv::LINE_8, false);
 		*/
 	}
 }
@@ -124,7 +124,7 @@ void VideoIO::PutCountInfo(int action_count, cv::Mat* pInImage)
 		
 	output_text << "Count: " << action_count;
 		
-	cv::putText(current_frame, output_text.str(), cv::Point(10, 60), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0, 0, 255), 1, cv::LINE_8, false);
+	cv::putText(current_frame, output_text.str(), cv::Point(10, 70), cv::FONT_HERSHEY_SIMPLEX, 2.5, cv::Scalar(0, 0, 255), 6, cv::LINE_8, false);
 
 }
 
@@ -139,7 +139,7 @@ void VideoIO::PutFPSInfo(double fps,cv::Mat* pInImage)
 
 	output_text << "FPS: " << std::setiosflags(std::ios::fixed) << std::setprecision(2) << fps;
 	
-	cv::putText(current_frame, output_text.str(), cv::Point(10, 30), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0, 0, 255), 1, cv::LINE_8, false);
+	cv::putText(current_frame, output_text.str(), cv::Point(10, 60), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(244, 186, 57), 3, cv::LINE_8, false);
 
 }
 

@@ -1,5 +1,5 @@
 #include "AIcoacherTest.h"
-//#define NO_DISPLAY_DEBUG_INFO
+#define NO_DISPLAY_DEBUG_INFO
 //【YHC-0421-1614】定义结构体和文件读取方法用于从文件读取测试视频路径
 typedef struct TestPaths {
 
@@ -112,7 +112,7 @@ bool TestForAIClass()
 {
 	const int num_pose_queue = 5;
 
-	string videoName = "D:/GitHub/210203_AIcoach/AIcoachData/video/107/k/8yxiji.mp4"; //"../../data/video/suki/002-suki_01.mp4"; 
+	string videoName = "D:/FFOutput/03.mp4"; //"../../data/video/suki/002-suki_01.mp4"; 
 
 	//"../../../data/video/YHC/yhc-01.mp4"; //
 
@@ -236,10 +236,11 @@ bool TestForAIClass()
 			}
 #ifndef NO_DISPLAY_DEBUG_INFO
 
-			cv::putText(curImg, output_text.str(), cv::Point(10, 30), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0, 0, 255), 1, cv::LINE_8, false);
+			cv::putText(curImg, output_text.str(), cv::Point(10, 30), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(244, 186, 57), 1, cv::LINE_8, false);
 
 #endif
-			cv::imshow("TestForActionTransfer", curImg);
+			cv::resize(curImg, curImg, cv::Size(0, 0), 0.65, 0.65);
+			cv::imshow("AICoacher Demo", curImg);
 			
 			// 指定图像保存目录！
 			curVideo.SaveFrame("../../../data/results/text/output_", true);
@@ -473,11 +474,11 @@ void main()
 
 //	TestForActionTransfer();
 
-	//TestForAIClass();
+	TestForAIClass();
 	
 	//OutputPointsHeadNeck();
 	
-	TestAIcoacherThread();
+	// TestAIcoacherThread();
 
 	//【5/4测试，需要准备输入视频文件actiondemo519.mp4和动作识别文件actiondemo519.txt】
 	//TestForAIClassSchedule();

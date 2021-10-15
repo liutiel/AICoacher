@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AIcoachTest", "AIcoachTest\AIcoachTest.vcxproj", "{31266189-7642-424A-98C9-05465D761835}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AIcoachDemo", "AIcoachDemo\AIcoachDemo.vcxproj", "{CB4AF6C2-BCC2-49CE-8C98-82226618AC84}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AIcoacherGUI", "AIcoacherGUI\AIcoacherGUI.vcxproj", "{CB4AF6C2-BCC2-49CE-8C98-82226618AC84}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AIcoachDLL", "AIcoachDLL\AIcoachDLL.vcxproj", "{1D9AA6FB-3B85-420F-B66B-18E15A1C2093}"
 EndProject

@@ -19,19 +19,17 @@ signals:
 	void frame_finished_signal();
 
 public slots:
-	void coach_init_slot(int classID, int input_stream);
-	void coach_init_slot(int classID, QString input_stream);
-	void coach_start_slot();
-
-public:
-	AIcoacher* GetAICoacherPr();
-
-
-private:
-	AIcoacher m_aicoacher;
+	void coach_init_slot(int classID, int input_stream);	// For webcam
+	void coach_init_slot(int classID, QString input_stream);	// For files
+	void coach_start_slot();	// Start proccessing frames
 
 public:
 	bool m_besuspended;
 	bool m_beended;
+	AIcoacher* GetAICoacherPr();	// Pointer of AICoacher library
+
+private:
+	AIcoacher m_aicoacher;
+
 };
 

@@ -24,13 +24,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="AIcoachDemo.qrc">
+    <QtRcc Include="AIcoacherGUI.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-    <QtUic Include="AIcoachDemo.ui">
+    <QtUic Include="AIcoacherGUI.ui">
       <Filter>Resource Files</Filter>
     </QtUic>
-    <ClCompile Include="AIcoachDemo.cpp">
+    <ClCompile Include="AIcoacherGUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -105,7 +105,7 @@
     <QtMoc Include="AIcoacherHelper.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="AIcoachDemo.h">
+    <QtMoc Include="AIcoacherGUI.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

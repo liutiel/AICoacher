@@ -12,14 +12,16 @@ AIcoacherHelper::~AIcoacherHelper()
 	//
 }
 
+// For webcam
 void AIcoacherHelper::coach_init_slot(int classID, int input_stream)
 {
 
 }
 
+// For files
 void AIcoacherHelper::coach_init_slot(int classID, QString input_stream)
 {
-	if (m_aicoacher.Init2(classID, input_stream.toStdString()))
+	if (m_aicoacher.Init(classID, input_stream.toStdString()))
 	{
 		emit coach_init_result_signal(true, input_stream);
 	}
@@ -29,6 +31,7 @@ void AIcoacherHelper::coach_init_slot(int classID, QString input_stream)
 	}
 }
 
+// Start proccessing frames
 void AIcoacherHelper::coach_start_slot()
 {
 	bool b_processing = true; 
@@ -36,7 +39,7 @@ void AIcoacherHelper::coach_start_slot()
 	{
 		if (false == m_besuspended && false == m_beended)
 		{
-			b_processing = m_aicoacher.AIcoacherFrameProcessing2();
+			b_processing = m_aicoacher.AIcoacherFrameProcessing();
 
 			emit coach_one_frame_signal();
 		}
@@ -61,6 +64,7 @@ void AIcoacherHelper::coach_start_slot()
 
 }
 
+// Pointer of AICoacher library
 AIcoacher* AIcoacherHelper::GetAICoacherPr()
 {
 	return &m_aicoacher;

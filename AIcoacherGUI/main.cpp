@@ -1,10 +1,10 @@
-#include "AIcoachDemo.h"
+#include "AIcoacherGUI.h"
 #include <QtWidgets/QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    AIcoachDemo w;
+    AIcoacherGUI w;
     w.show();
     return a.exec();
 }

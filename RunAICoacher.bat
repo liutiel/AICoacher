@@ -1,3 +1,3 @@
 cd x64
 cd Release
-cmd.exe /k "AIcoachDemo.exe"
+cmd.exe /k "AIcoacherGUI.exe"

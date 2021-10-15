@@ -473,11 +473,11 @@ void main()
 
 //	TestForActionTransfer();
 
-	TestForAIClass();
+	//TestForAIClass();
 	
 	//OutputPointsHeadNeck();
 	
-//	TestAIcoacherThread();
+	TestAIcoacherThread();
 
 	//【5/4测试，需要准备输入视频文件actiondemo519.mp4和动作识别文件actiondemo519.txt】
 	//TestForAIClassSchedule();

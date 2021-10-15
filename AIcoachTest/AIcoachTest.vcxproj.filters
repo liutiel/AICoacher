@@ -45,12 +45,6 @@
     <ClCompile Include="..\AIcoachDLL\CoachTimer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\HealthActionExtractor\HealthActionExtractor.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="..\HealthActionExtractor\SkeletonPointExtractor.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="..\AIcoachDLL\VideoIO.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -105,12 +99,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="..\AIcoachDLL\CoachTimer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="..\HealthActionExtractor\HealthActionExtractor.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="..\HealthActionExtractor\SkeletonPointExtractor.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="..\AIcoachDLL\VideoIO.h">

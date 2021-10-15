@@ -1,6 +1,6 @@
-#include "AIcoachDemo.h"
+#include "AIcoacherGUI.h"
 
-AIcoachDemo::AIcoachDemo(QWidget *parent)
+AIcoacherGUI::AIcoacherGUI(QWidget *parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
@@ -37,8 +37,11 @@ AIcoachDemo::AIcoachDemo(QWidget *parent)
     ui.comboBox_class->setCurrentIndex(0);
 }
 
+/**
+    Clicking the buttons. 
+**/
 // Start training
-void AIcoachDemo::pushButtonStartClicked()
+void AIcoacherGUI::pushButtonStartClicked()
 {
 
     emit coach_init_signal(ui.comboBox_class->currentIndex(), m_file_path);
@@ -47,8 +50,72 @@ void AIcoachDemo::pushButtonStartClicked()
     m_aicoacher_helper->m_beended = false;
 }
 
+// Stop
+void AIcoacherGUI::pushButtonEndClicked()
+{
+    // emit coach_end_signal();
+    m_aicoacher_helper->m_beended = true;
+}
+
+// Suspend
+void AIcoacherGUI::pushButtonSuspendClicked()
+{
+    m_aicoacher_helper->m_besuspended = !m_aicoacher_helper->m_besuspended;
+    if (false == m_aicoacher_helper->m_besuspended)
+    {
+        emit coach_start_signal();
+
+        ui.textBrowser_log->append("Resume training！\n");
+    }
+    else
+    {
+        ui.textBrowser_log->append("Pause training！\n");
+    }
+}
+
+// Load file
+void AIcoacherGUI::menuFileLoadClicked()
+{
+    m_file_path = QFileDialog::getOpenFileName(this, "Explore video files", "../../data/video/suki", "*.*");    // Choose a video file to open
+
+    if (strcmp(m_file_path.toStdString().c_str(), "") != 0)
+    {
+        stringstream log_string_stream;
+        log_string_stream.str("");
+        log_string_stream << "Set the input video file：\"" << m_file_path.toStdString() << "\"" << endl << endl;
+
+        ui.textBrowser_log->append(QString::fromStdString(log_string_stream.str()));
+    }
+
+    // log_string_stream << "current frame count: "<< m_aicoacher_helper->GetAICoacherPr()->m_videoIO.GetFrameCount() << endl;
+}
+
+void AIcoacherGUI::menuCameraLoadClicked()
+{
+    //
+}
+
+// Click "Exit" to close the window
+void AIcoacherGUI::menuExitClicked()
+{
+    this->close();
+}
+
+// The "About" dialog
+void AIcoacherGUI::menuAboutClicked()
+{
+    QString dlgTitle = "About AIcoacher";
+
+    QString strInfo = "AIcoacher v0.1";
+
+    QMessageBox::information(this, dlgTitle, strInfo, QMessageBox::Ok, QMessageBox::NoButton);
+}
+
+/**
+    Initilization result.
+**/
 // Webcam
-void AIcoachDemo::coach_init_result_slot(bool isSuccessful, int input_stream)
+void AIcoacherGUI::coach_init_result_slot(bool isSuccessful, int input_stream)
 {
     stringstream log_string_stream;
 
@@ -72,8 +139,8 @@ void AIcoachDemo::coach_init_result_slot(bool isSuccessful, int input_stream)
     }
 }
 
-// Check whether file loaded successfully
-void AIcoachDemo::coach_init_result_slot(bool isSuccessful, QString input_stream)
+// Video file
+void AIcoacherGUI::coach_init_result_slot(bool isSuccessful, QString input_stream)
 {
     // Initialize the log stream
     stringstream log_string_stream;
@@ -127,58 +194,8 @@ void AIcoachDemo::coach_init_result_slot(bool isSuccessful, QString input_stream
     }
 }
 
-// Stop
-void AIcoachDemo::pushButtonEndClicked()
-{
-    // emit coach_end_signal();
-    m_aicoacher_helper->m_beended = true;
-}
-
-// Suspend
-void AIcoachDemo::pushButtonSuspendClicked()
-{
-    m_aicoacher_helper->m_besuspended = !m_aicoacher_helper->m_besuspended;
-    if (false == m_aicoacher_helper->m_besuspended)
-    {
-        emit coach_start_signal();
-
-        ui.textBrowser_log->append("Resume training！\n");
-    }
-    else
-    {
-        ui.textBrowser_log->append("Pause training！\n");
-    }
-}
-// Load file
-void AIcoachDemo::menuFileLoadClicked()
-{
-    m_file_path = QFileDialog::getOpenFileName(this, "Explore video files", "../../data/video/suki", "*.*");    // Choose a video file to open
-
-    if (strcmp(m_file_path.toStdString().c_str(), "") != 0)
-    {
-        stringstream log_string_stream;
-        log_string_stream.str("");
-        log_string_stream << "Set the input video file：\"" << m_file_path.toStdString() << "\"" << endl << endl;
-
-        ui.textBrowser_log->append(QString::fromStdString(log_string_stream.str()));
-    }
-
-    // log_string_stream << "current frame count: "<< m_aicoacher_helper->GetAICoacherPr()->m_videoIO.GetFrameCount() << endl;
-}
-
-void AIcoachDemo::menuCameraLoadClicked()
-{
-    //
-}
-
-// Click "Exit" to close the window
-void AIcoachDemo::menuExitClicked()
-{
-    this->close();
-}
-
 // Enable/disable buttons
-void AIcoachDemo::frame_finished_slot()
+void AIcoacherGUI::frame_finished_slot()
 {
     m_aicoacher_helper->m_beended = true;
     m_aicoacher_helper->GetAICoacherPr()->GetCurrentVideoIO().DestroyInputStream();
@@ -198,41 +215,8 @@ void AIcoachDemo::frame_finished_slot()
     ui.pushButton_stop->setEnabled(false);
 }
 
-// The "About" dialog
-void AIcoachDemo::menuAboutClicked()
-{
-    QString dlgTitle = "About AIcoachDemo";
-
-    QString strInfo = "AIcoachDemo v0.1";
-
-    QMessageBox::information(this, dlgTitle, strInfo, QMessageBox::Ok, QMessageBox::NoButton);
-}
-
-////////////////////updated at 2021-03-25 by Tie LIU////////////////////////////////////////
-void AIcoachDemo::DisplayMat(cv::Mat image,QLabel* in_pLabel)
-{
-    cv::Mat rgb;
-    QImage img;
-    if (image.channels() == 3)
-    {
-        cvtColor(image, rgb, COLOR_BGR2RGB);
-        img = QImage((const unsigned char*)(rgb.data),
-            rgb.cols, rgb.rows, rgb.cols * rgb.channels(),
-            QImage::Format_RGB888);
-    }
-    else
-    {
-        img = QImage((const unsigned char*)(image.data),
-            image.cols, image.rows, rgb.cols * image.channels(),
-            QImage::Format_RGB888);
-    }
- 
-    in_pLabel->setPixmap(QPixmap::fromImage(img).scaled(in_pLabel->size()));//setPixelmap(QPixmap::fromImage(img));
-
-
-}
-
-void AIcoachDemo::coach_one_frame_slot()
+// One frame processed
+void AIcoacherGUI::coach_one_frame_slot()
 {
     cv::Mat current_image = m_aicoacher_helper->GetAICoacherPr()->GetCurrentVideoIO().GetSkeletonFrame();
     DisplayMat(current_image, ui.video_processed);
@@ -259,8 +243,32 @@ void AIcoachDemo::coach_one_frame_slot()
     ui.label_time_num->setText(QString::fromLocal8Bit(output_text_stream.str().c_str()));
 }
 
-// Action tips
-void AIcoachDemo::PutPromptText()
+// Put OpenCV Mat into a Qt label
+void AIcoacherGUI::DisplayMat(cv::Mat image, QLabel* in_pLabel)
+{
+    cv::Mat rgb;
+    QImage img;
+    if (image.channels() == 3)
+    {
+        cvtColor(image, rgb, COLOR_BGR2RGB);
+        img = QImage((const unsigned char*)(rgb.data),
+            rgb.cols, rgb.rows, rgb.cols * rgb.channels(),
+            QImage::Format_RGB888);
+    }
+    else
+    {
+        img = QImage((const unsigned char*)(image.data),
+            image.cols, image.rows, rgb.cols * image.channels(),
+            QImage::Format_RGB888);
+    }
+
+    in_pLabel->setPixmap(QPixmap::fromImage(img).scaled(in_pLabel->size()));//setPixelmap(QPixmap::fromImage(img));
+
+
+}
+
+// Output action tips
+void AIcoacherGUI::PutPromptText()
 {
     string correction_string="";
 

@@ -13,13 +13,9 @@ AIcoacher::~AIcoacher()
 {
 }
 
-bool AIcoacher::Init2(int inClassID, std::string input_stream)
+bool AIcoacher::Init(int inClassID, std::string input_stream)
 {
 	m_curClassID = inClassID;
-
-//	string videoName = "D:/GitHub/210203_AIcoach/AIcoachData/video/107/k/8yxiji.mp4"; //"../../data/video/suki/002-suki_01.mp4"; 
-
-	//"../../../data/video/YHC/yhc-01.mp4"; //
 
 	if (m_videoIO.InitInputStream(input_stream))
 	{
@@ -27,9 +23,7 @@ bool AIcoacher::Init2(int inClassID, std::string input_stream)
 	}
 	// Reading action state transfer
 	string inFileName = "../../AIcoachDLL/models/action_category/action01.txt";
-	//ActionTransfer curActionTransfer;
-	//curActionTransfer.InitActionStateFromFile(inFileName);
-	InitActionStateList(inFileName, m_ActionTransferList);
+	InitActionStateList(inFileName);
 	cout << "InitActionStateList(inFileName, curActionTransferList): " << endl;
 
 	// Reading course info
@@ -42,7 +36,6 @@ bool AIcoacher::Init2(int inClassID, std::string input_stream)
 	//Initializing pose detector
 	m_PoseDetector.InitModelPara(POSE_MODEL);
 	cout << "InitActionStateList(inFileName, curActionTransferList): " << POSE_MODEL << endl;
-
 
 	// Obtain action parameters
 	HealthAction& curHealthAction = m_curClass.m_curHealthActionList[inClassID];
@@ -60,7 +53,6 @@ bool AIcoacher::Init2(int inClassID, std::string input_stream)
 			break;
 		}
 	}
-
 
 	return true;
 }
@@ -117,7 +109,7 @@ double AIcoacher::GetCurTimer()
 	return m_curTimer;
 }
 
-bool AIcoacher::AIcoacherFrameProcessing2()
+bool AIcoacher::AIcoacherFrameProcessing()
 {
 	// Obtain the frame, or exit
 	if (!m_videoIO.CaptureNextFrame())
@@ -176,6 +168,11 @@ bool AIcoacher::AIcoacherFrameProcessing2()
 	return true;
 }
 
+bool AIcoacher::StartHealthClass()
+{
+	return true;
+}
+
 bool AIcoacher::SuspendHealthClass()
 {
 	return true;
@@ -187,7 +184,6 @@ bool AIcoacher::EndHealthClass()
 }
 
 //for AIcoacherInterface
-/*
 bool AIcoacher::AIcoacherInitialize(int inVideoIndex, const char* inClassName)
 {
 
@@ -198,7 +194,7 @@ bool AIcoacher::AIcoacherInitialize(int inVideoIndex, const char* inClassName)
 
 	if (-1 == inVideoIndex) 
 	{
-		string videoName = "../../../data/video/ThreeActions.mp4";
+		string videoName = "D:/GitHub/210203_AIcoach/AIcoachData/video/107/k/1001.mp4";
 		m_videoIO.InitInputStream(videoName);
 	}
 	else
@@ -217,7 +213,6 @@ bool AIcoacher::AIcoacherInitialize(int inVideoIndex, const char* inClassName)
 
 	return true;
 }
-*/
 
 bool AIcoacher::AIcoacherUpdateClass(const char* inClassName)
 {
@@ -491,9 +486,9 @@ bool AIcoacher::AIcoacherActionTransferInit(HealthAction curHealthAction, Action
 	return true;
 }
 
-bool AIcoacher::InitActionStateList(string inFilename, vector<ActionTransfer>& curActionTransferList)
+bool AIcoacher::InitActionStateList(string inFilename)
 {
-	curActionTransferList.clear();
+	m_ActionTransferList.clear();
 
 	std::ifstream inF;
 	inF.open(inFilename, ios::in);
@@ -503,7 +498,7 @@ bool AIcoacher::InitActionStateList(string inFilename, vector<ActionTransfer>& c
 		ActionTransfer curAT;
 		if (true == curAT.ReaddActionStateFromStream(inF))
 		{
-			curActionTransferList.push_back(curAT);
+			m_ActionTransferList.push_back(curAT);
 		}
 	}
 

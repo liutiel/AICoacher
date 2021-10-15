@@ -62,9 +62,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <QtRcc Include="AIcoachDemo.qrc" />
-    <QtUic Include="AIcoachDemo.ui" />
-    <QtMoc Include="AIcoachDemo.h" />
+    <QtRcc Include="AIcoacherGUI.qrc" />
+    <QtUic Include="AIcoacherGUI.ui" />
+    <QtMoc Include="AIcoacherGUI.h" />
     <ClCompile Include="..\AIcoachDLL\ActionTransfer.cpp" />
     <ClCompile Include="..\AIcoachDLL\AIclass.cpp" />
     <ClCompile Include="..\AIcoachDLL\AIcoacher.cpp" />
@@ -74,7 +74,7 @@
     <ClCompile Include="..\AIcoachDLL\PoseDetector.cpp" />
     <ClCompile Include="..\AIcoachDLL\VideoIO.cpp" />
     <ClCompile Include="..\AIcoachDLL\WorkoutParameter.cpp" />
-    <ClCompile Include="AIcoachDemo.cpp" />
+    <ClCompile Include="AIcoacherGUI.cpp" />
     <ClCompile Include="AIcoacherHelper.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

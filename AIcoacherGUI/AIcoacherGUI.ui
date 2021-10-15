@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AIcoachDemoClass</class>
- <widget class="QMainWindow" name="AIcoachDemoClass">
+ <class>AIcoacherGUIClass</class>
+ <widget class="QMainWindow" name="AIcoacherGUIClass">
   <property name="enabled">
    <bool>true</bool>
   </property>
@@ -20,7 +20,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>AIcoachDemo</string>
+   <string>AIcoacher</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -53,7 +53,7 @@
              </font>
             </property>
             <property name="text">
-             <string>原始视频流</string>
+             <string>Video Stream</string>
             </property>
            </widget>
           </item>
@@ -94,7 +94,7 @@
              </font>
             </property>
             <property name="text">
-             <string>检测视频流</string>
+             <string>Skeleton Points</string>
             </property>
            </widget>
           </item>
@@ -159,7 +159,7 @@
             </font>
            </property>
            <property name="text">
-            <string>计数：</string>
+            <string>Count:</string>
            </property>
           </widget>
          </item>
@@ -236,7 +236,7 @@
             </font>
            </property>
            <property name="text">
-            <string>时间：</string>
+            <string>Time: </string>
            </property>
           </widget>
          </item>
@@ -358,7 +358,7 @@
               </font>
              </property>
              <property name="text">
-              <string>选择课程：</string>
+              <string>Curriculum: </string>
              </property>
             </widget>
            </item>
@@ -383,42 +383,17 @@
              </property>
              <item>
               <property name="text">
-               <string>（测试动作）</string>
+               <string>Side Lateral Raise</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>开合跳</string>
+               <string>Y-Stretch</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>抱头提膝扭转</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>卷腹两头起</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>释手俯卧撑</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>深蹲</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>左侧弓箭步蹲</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>平板支撑</string>
+               <string>Squat</string>
               </property>
              </item>
             </widget>
@@ -453,7 +428,7 @@
              </font>
             </property>
             <property name="text">
-             <string>开始运动</string>
+             <string>START</string>
             </property>
            </widget>
           </item>
@@ -482,7 +457,7 @@
              </font>
             </property>
             <property name="text">
-             <string>暂停/恢复运动</string>
+             <string>PAUSE/RESUME</string>
             </property>
            </widget>
           </item>
@@ -511,7 +486,7 @@
              </font>
             </property>
             <property name="text">
-             <string>停止运动</string>
+             <string>STOP</string>
             </property>
            </widget>
           </item>
@@ -539,7 +514,7 @@
          </font>
         </property>
         <property name="text">
-         <string>日志</string>
+         <string>Log</string>
         </property>
        </widget>
       </item>
@@ -579,23 +554,16 @@
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>开始</string>
+     <string>Start</string>
     </property>
     <addaction name="action_load_file"/>
     <addaction name="action_load_camera"/>
-    <addaction name="separator"/>
-    <addaction name="action_save_video"/>
-    <addaction name="action_save_data"/>
-    <addaction name="separator"/>
-    <addaction name="action_extract"/>
-    <addaction name="action_train"/>
-    <addaction name="action_class_edit"/>
     <addaction name="separator"/>
     <addaction name="action_exit"/>
    </widget>
    <widget class="QMenu" name="menu_About">
     <property name="title">
-     <string>帮助</string>
+     <string>Help</string>
     </property>
     <addaction name="action_about"/>
    </widget>
@@ -605,7 +573,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="action_exit">
    <property name="text">
-    <string>退出</string>
+    <string>Exit</string>
    </property>
   </action>
   <action name="action_save_video">
@@ -618,7 +586,7 @@
   </action>
   <action name="action_about">
    <property name="text">
-    <string>关于</string>
+    <string>About</string>
    </property>
   </action>
   <action name="action_save_data">
@@ -631,7 +599,7 @@
   </action>
   <action name="action_load_file">
    <property name="text">
-    <string>加载视频文件</string>
+    <string>Load video file</string>
    </property>
   </action>
   <action name="action_load_camera">
@@ -639,7 +607,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>加载摄像头</string>
+    <string>Load webcam</string>
    </property>
   </action>
   <action name="action_etract">
@@ -674,13 +642,13 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="AIcoachDemo.qrc"/>
+  <include location="AIcoacherGUI.qrc"/>
  </resources>
  <connections>
   <connection>
    <sender>action_exit</sender>
    <signal>triggered()</signal>
-   <receiver>AIcoachDemoClass</receiver>
+   <receiver>AIcoacherGUIClass</receiver>
    <slot>menuExitClicked()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -696,7 +664,7 @@
   <connection>
    <sender>pushButton_start</sender>
    <signal>clicked()</signal>
-   <receiver>AIcoachDemoClass</receiver>
+   <receiver>AIcoacherGUIClass</receiver>
    <slot>pushButtonStartClicked()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -712,7 +680,7 @@
   <connection>
    <sender>pushButton_stop</sender>
    <signal>clicked()</signal>
-   <receiver>AIcoachDemoClass</receiver>
+   <receiver>AIcoacherGUIClass</receiver>
    <slot>pushButtonEndClicked()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -728,7 +696,7 @@
   <connection>
    <sender>pushButton_suspend</sender>
    <signal>clicked()</signal>
-   <receiver>AIcoachDemoClass</receiver>
+   <receiver>AIcoacherGUIClass</receiver>
    <slot>pushButtonSuspendClicked()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -744,7 +712,7 @@
   <connection>
    <sender>action_load_file</sender>
    <signal>triggered()</signal>
-   <receiver>AIcoachDemoClass</receiver>
+   <receiver>AIcoacherGUIClass</receiver>
    <slot>menuFileLoadClicked()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -760,7 +728,7 @@
   <connection>
    <sender>action_load_camera</sender>
    <signal>triggered()</signal>
-   <receiver>AIcoachDemoClass</receiver>
+   <receiver>AIcoacherGUIClass</receiver>
    <slot>menuCameraLoadClicked()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -776,12 +744,12 @@
   <connection>
    <sender>action_about</sender>
    <signal>triggered()</signal>
-   <receiver>AIcoachDemoClass</receiver>
+   <receiver>AIcoacherGUIClass</receiver>
    <slot>menuAboutClicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>99</x>
-     <y>56</y>
+     <x>-1</x>
+     <y>-1</y>
     </hint>
     <hint type="destinationlabel">
      <x>949</x>

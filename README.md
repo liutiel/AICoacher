@@ -7,9 +7,8 @@
 2. [Installation](#installation)
 3. [Quick Start Overview](#quick-start-overview)
 4. [Send Us Feedback!](#send-us-feedback)
-5. [Citation](#citation)
-6. [License](#license)
-7. [Related Work](#related-work)
+5. [License](#license)
+6. [Related Work](#related-work)
 
 
 ## Features
@@ -17,17 +16,8 @@
     - **Workout Counting**:  
         Three categories of workout actions are supported:  
         - Side Lateral Raise  
-        <p align="center">
-            <img src="./docs/rec01x.gif" width="320">
-        </p>
         - Y-Stretch  
-        <p align="center">
-            <img src="./docs/rec02x.gif" width="320">
-        </p>
         - Squat  
-        <p align="center">
-            <img src="./docs/rec03x.gif" width="320">
-        </p>
 
     - **Workout Scheduling**  
     - **Workout Tips**  
@@ -46,7 +36,7 @@ Microsoft Windows x64
 Visual Studio 2019 with Visual C++ 2019  
 Qt 5.15.2 and Qt integration for Visual Studio
 OpenCV 4.5.1  
-tflist-dist(A third-party tensorflow C++ interface)  
+[tflist-dist](https://github.com/ValYouW/tflite-dist)(A third-party tensorflow C++ interface)  
 
 ### Compiling Steps: 
 1. Install all the requirements above.  
@@ -79,6 +69,6 @@ Our library is open source for research purposes, and we want to improve it! So 
 ## License
 AICoacher is licensed under Licensed under Apache v2 license. Please, see the [license](./LICENSE) for further details.  
 
-## Citation
-  
 ## Related Work
+This is the open source implementation of the ACM Multimedia '21 paper *"AICoacher: A System Framework for Online Realtime Workout Coach"* ([DOI: 10.1145/3474085.3478321](https://doi.org/10.1145/3474085.3478321))  
+Please **cite** this paper if this project contributes to your work, thank you!  

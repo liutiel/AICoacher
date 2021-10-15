@@ -72,8 +72,6 @@
     <ClCompile Include="..\AIcoachDLL\PoseTracker.cpp" />
     <ClCompile Include="..\AIcoachDLL\VideoIO.cpp" />
     <ClCompile Include="..\AIcoachDLL\WorkoutParameter.cpp" />
-    <ClCompile Include="..\HealthActionExtractor\HealthActionExtractor.cpp" />
-    <ClCompile Include="..\HealthActionExtractor\SkeletonPointExtractor.cpp" />
     <ClCompile Include="AIcoacherTest.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -94,8 +92,6 @@
     <ClInclude Include="..\AIcoachDLL\PoseTracker.h" />
     <ClInclude Include="..\AIcoachDLL\VideoIO.h" />
     <ClInclude Include="..\AIcoachDLL\WorkoutParameter.h" />
-    <ClInclude Include="..\HealthActionExtractor\HealthActionExtractor.h" />
-    <ClInclude Include="..\HealthActionExtractor\SkeletonPointExtractor.h" />
     <ClInclude Include="AIcoacherTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

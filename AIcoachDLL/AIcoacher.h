@@ -56,7 +56,7 @@ public:
 
 	int m_pose_queue_num = 1;
 
-	bool Init2(int inClassID, std::string input_stream); // Init the class setting
+	bool Init(int inClassID, std::string input_stream); // Init the class setting
 
 	bool StartHealthClass();
 
@@ -65,7 +65,6 @@ public:
 	bool EndHealthClass();// stop training
 
 	bool AIcoacherFrameProcessing();
-	bool AIcoacherFrameProcessing2();
 
 	VideoIO GetCurrentVideoIO();
 
@@ -136,7 +135,7 @@ public:
 	 void (*pCallBackAIcoachCount)(int* nCount, char* cPrompt);
 
 public:
-	bool InitActionStateList(string inFilename, vector<ActionTransfer>& curActionTransferList);
+	bool InitActionStateList(string inFilename);
 
 
 };

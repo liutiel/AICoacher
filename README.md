@@ -25,8 +25,13 @@
             <img src="./docs/rec03x.gif" height="300">
         </p>
 
-    - **Workout Scheduling**  
     - **Workout Tips**  
+        <p align="left">
+            <img src="./docs/rec04x.gif" height="450">
+        </p>
+
+    - **Workout Scheduling**  
+
 - **System Highlight**:  
     - The key frames of one workout action are extracted automatically and the feature vectors are calculated with the body pose points.  
     - The workout actions are efficiently recognized with a state transfer matrix while the temporal continuous characteristics of one workout action can be well captured.  

@@ -37,6 +37,7 @@ public:
 	vector<PersonPosePara> m_pose_queue; //【replace the pose queque definition in PoseTracker】
 	ActionTransfer m_current_transfer;
 	HealthAction m_HealthAction;
+	int m_perfection = 0;
 
 
 	/***********           legency design           ******/

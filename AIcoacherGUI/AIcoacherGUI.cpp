@@ -204,7 +204,7 @@ void AIcoacherGUI::frame_finished_slot()
     log_string_stream.str("");
     log_string_stream
         << "Training finished! " << endl
-        << "Action " << ui.comboBox_class->itemText(m_aicoacher_helper->GetAICoacherPr()->GetCurClassID()).toStdString() << " has been accomplised for "
+        << "Action " << ui.comboBox_class->itemText(m_aicoacher_helper->GetAICoacherPr()->GetCurClassID()).toStdString() << " has been accomplished for "
         << m_aicoacher_helper->GetAICoacherPr()->GetCurrentCount() << " times in "
         << std::setiosflags(std::ios::fixed) << std::setprecision(1) << m_aicoacher_helper->GetAICoacherPr()->GetCurTimer() << "seconds. " << endl << endl;
 
@@ -235,7 +235,10 @@ void AIcoacherGUI::coach_one_frame_slot()
     ui.label_count_num->setText(QString::fromLocal8Bit(output_text_stream.str().c_str()));
 
     // Action tips
-    PutPromptText();
+    if (m_aicoacher_helper->GetAICoacherPr()->GetActionPrompt() >= 0) 
+    {
+        PutPromptText();
+    }
 
     // Time
     output_text_stream.str("");
@@ -272,81 +275,62 @@ void AIcoacherGUI::PutPromptText()
 {
     string correction_string="";
 
-    switch (m_aicoacher_helper->GetAICoacherPr()->GetCurClassID())
+    switch (m_aicoacher_helper->GetAICoacherPr()->m_HealthAction.m_paraAction.actionType)
     {
-    case 1:
+    case 51901:
         switch (m_aicoacher_helper->GetAICoacherPr()->GetActionPrompt())
         {
         case 0:
-            correction_string = "";
+            correction_string = "Perfect";
             break;
         case 1:
-            correction_string = "Raise hands over head! ";
-            break;
         case 2:
-            correction_string = "Put down your hands! ";
+            correction_string = "Rise high";
             break;
         case 3:
-            correction_string = "Open your legs! ";
-            break;
         case 4:
-            correction_string = "Close your legs! ";
-            break;
-        case 5:
-            correction_string = "Stand straight! ";
-            break;
-        case 10:
-            correction_string = "Illegal pose！";
+            correction_string = "Close legs";
             break;
         default:
             correction_string = "";
             break;
         }
         break;
-    case 2:
+    case 51902:
         switch (m_aicoacher_helper->GetAICoacherPr()->GetActionPrompt())
         {
         case 0:
-            correction_string = "";
+            correction_string = "Perfect";
             break;
         case 1:
-            correction_string = "Put your hands beside your ears! ";
-            break;
         case 2:
-            correction_string = "Stand straight! ";
-            break;
         case 3:
-            correction_string = "Raise your knees! ";
-            break;
         case 4:
-            correction_string = "Bend your elbow! ";
-            break;
-        case 5:
-            correction_string = "Resume standing with hands holding head. ";
-            break;
-        case 6:
-            correction_string = "Do not train the hand and the leg at the same side! ";
-            break;
-        case 7:
-            correction_string = "Do not bend both elbows! ";
-            break;
-        case 8:
-            correction_string = "Train the other side! ";
-            break;
-        case 10:
-            correction_string = "Illegal pose! ";
+            correction_string = "Close legs";
             break;
         default:
             correction_string = "";
             break;
         }
+        break;
+    case 51903:
+        switch (m_aicoacher_helper->GetAICoacherPr()->GetActionPrompt())
+        {
+        default:
+            correction_string = "";
+            break;
+        }
+        break;
+    default:
+        correction_string = "x";
+        break;
     }
 
     std::stringstream prompt_text;
     prompt_text.str(correction_string);
 
     // Show action tips in the log
-    if (m_current_prompt_id != m_aicoacher_helper->GetAICoacherPr()->GetActionPrompt() && m_aicoacher_helper->GetAICoacherPr()->GetActionPrompt() != 0)
+    if (correction_string != "Perfect" && correction_string != "")
     {
         stringstream log_string_stream;
         log_string_stream.str("");
@@ -355,6 +339,7 @@ void AIcoacherGUI::PutPromptText()
             << "[" << std::setiosflags(std::ios::fixed) << std::setprecision(1) << m_aicoacher_helper->GetAICoacherPr()->GetCurTimer() << "s] ";
         ui.textBrowser_log->append(QString::fromStdString(log_string_stream.str()));
     }
+    ui.label_prompt_content->setText(QString::fromStdString(correction_string));
 
     m_current_prompt_id = m_aicoacher_helper->GetAICoacherPr()->GetActionPrompt();
 }

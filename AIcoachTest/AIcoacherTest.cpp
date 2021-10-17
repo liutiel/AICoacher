@@ -25,6 +25,53 @@ TestPaths GetTestPath()
 	return m_test_path;
 }
 
+string GetActionTips(int actionNo, int tipNo)
+{
+	//cout << "tipno: " << tipNo << endl;
+
+	switch(actionNo)
+	{
+	case 51901:
+		switch (tipNo)
+		{
+		case 0:
+			return "Perfect";
+		case 1:
+		case 2:
+			return "Rise high";
+		case 3:
+		case 4:
+			return "Close legs";
+		default:
+			return "";
+		}
+		break;
+	case 51902:
+		switch (tipNo)
+		{
+		case 0:
+			return "Perfect";
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+			return "Close legs";
+		default:
+			return "";
+		}
+		break;
+	case 51903:
+		switch (tipNo)
+		{
+		default:
+			return "";
+		}
+		break;
+	default:
+		return "";
+	}
+}
+
 bool TestForActionTransfer()
 {
 	const int num_pose_queue = 5;
@@ -85,13 +132,13 @@ bool TestForActionTransfer()
 
 		AcionStatePara curActionState;
 		curActionState = curActionTransfer.ComputeActionStateFromPosePoints(cur_pose_queue);
-		for (int j = 0; j < DEFINED_NUMBER_ACTION_STATE; j++)
+		for (int j = 0; j < DEFINED_NUMBER_ACTION_STATE + DEFINED_NUMBER_PERFECT_STATE; j++)
 		{
 			cout << curActionState.stateIndex[j] << " ";
 		}
 		cout << endl;
 
-		if (true == curActionTransfer.NextActionState(curActionState))
+		if (1 == curActionTransfer.NextActionState(curActionState)[0])
 		{
 			count++; 
 
@@ -112,7 +159,7 @@ bool TestForAIClass()
 {
 	const int num_pose_queue = 5;
 
-	string videoName = "D:/FFOutput/03.mp4"; //"../../data/video/suki/002-suki_01.mp4"; 
+	string videoName = "D:/GitHub/210203_AIcoach/AIcoachData/video/0519/1cepingjv.mp4"; //"../../data/video/suki/002-suki_01.mp4"; 
 
 	//"../../../data/video/YHC/yhc-01.mp4"; //
 
@@ -184,6 +231,7 @@ bool TestForAIClass()
 		//begin to process for each heathaction
 		int count = 0;
 		int index = 0;
+		string tips = "";
 		while (curVideo.CaptureNextFrame())
 		{
 			//cout << "index: " << index++;// << endl;
@@ -200,17 +248,20 @@ bool TestForAIClass()
 
 			AcionStatePara curActionState;
 			curActionState = curActionTransfer.ComputeActionStateFromPosePoints(cur_pose_queue);
-			for (int j = 0; j < DEFINED_NUMBER_ACTION_STATE; j++)
+			for (int j = 0; j < DEFINED_NUMBER_ACTION_STATE + DEFINED_NUMBER_PERFECT_STATE; j++)
 			{
 				//cout << curActionState.stateIndex[j] << " ";
 			}
 
-
-			if (true == curActionTransfer.NextActionState(curActionState))
+			int* nextAction = curActionTransfer.NextActionState(curActionState);
+			curActionTransfer.NextPerfectState(curActionState);
+			if (1 == nextAction[0])
 			{
 				count++;
 
 				//cout << "Count: " << count;// << endl;
+
+				tips = GetActionTips(indexAction, nextAction[1]);
 			}
 			cout << endl;
 
@@ -226,11 +277,12 @@ bool TestForAIClass()
 
 #endif
 			curVideo.PutCountInfo(count);
+			curVideo.PutTipsInfo(tips);
 			cv::Mat curImg = curVideo.GetCurrentFrame();
 
 			std::stringstream output_text;
 			output_text.str("");
-			for (int j = 0; j < DEFINED_NUMBER_ACTION_STATE; j++)
+			for (int j = 0; j < DEFINED_NUMBER_ACTION_STATE + DEFINED_NUMBER_PERFECT_STATE; j++)
 			{
 				output_text << curActionState.stateIndex[j] << " ";
 			}
@@ -409,13 +461,13 @@ bool TestForAIClassSchedule()
 
 			AcionStatePara curActionState;
 			curActionState = curActionTransfer.ComputeActionStateFromPosePoints(cur_pose_queue);
-			for (int j = 0; j < DEFINED_NUMBER_ACTION_STATE; j++)
+			for (int j = 0; j < DEFINED_NUMBER_ACTION_STATE + DEFINED_NUMBER_PERFECT_STATE; j++)
 			{
 				cout << curActionState.stateIndex[j] << " ";
 			}
 
 
-			if (true == curActionTransfer.NextActionState(curActionState))
+			if (1 == curActionTransfer.NextActionState(curActionState)[0])
 			{
 				count++;
 
@@ -474,7 +526,7 @@ void main()
 
 //	TestForActionTransfer();
 
-	TestForAIClass();
+	//TestForAIClass();
 	
 	//OutputPointsHeadNeck();
 	
@@ -483,14 +535,14 @@ void main()
 	//【5/4测试，需要准备输入视频文件actiondemo519.mp4和动作识别文件actiondemo519.txt】
 	//TestForAIClassSchedule();
 
-	return; 
+	//return; 
 	
 	AIcoacher curAIcoach;
 //	cout << "AIcoacher curAIcoach;" << endl;
 	cout << "开始测试" << endl;
 
 	//【YHC-0421-1625】从文件获取测试视频路径
-	curAIcoach.Init(2, GetTestPath().input_stream);
+	curAIcoach.Init(0, "D:/GitHub/210203_AIcoach/AIcoachData/video/107/k/1001.mp4");
 //	curAIcoach.Init(2, INPUT_STREAM);
 //	cout << "curAIcoach.Init(0);" << endl;
 

@@ -128,6 +128,19 @@ void VideoIO::PutCountInfo(int action_count, cv::Mat* pInImage)
 
 }
 
+void VideoIO::PutTipsInfo(string tips, cv::Mat* pInImage)
+{
+	cv::Mat current_frame = (NULL == pInImage) ? m_current_frame : *pInImage;
+	std::stringstream output_text;
+
+	output_text.str("");
+
+	output_text << tips;
+
+	cv::putText(current_frame, output_text.str(), cv::Point(10, 140), cv::FONT_HERSHEY_SIMPLEX, 2.5, cv::Scalar(0, 0, 255), 6, cv::LINE_8, false);
+
+}
+
 void VideoIO::PutFPSInfo(double fps,cv::Mat* pInImage)
 {
 	cv::Mat current_frame = (NULL == pInImage) ? m_current_frame : *pInImage;

@@ -100,8 +100,7 @@ int AIcoacher::GetCurClassID()
 
 int AIcoacher::GetActionPrompt()
 {
-	//return m_curPerson.GetCurrentActionRecognizer()->GetCurrentActionPrompt();
-	return 0;
+	return m_perfection;
 }
 
 double AIcoacher::GetCurTimer()
@@ -137,17 +136,21 @@ bool AIcoacher::AIcoacherFrameProcessing()
 
 	AcionStatePara curActionState;
 	curActionState = m_current_transfer.ComputeActionStateFromPosePoints(m_pose_queue);
-	for (int j = 0; j < DEFINED_NUMBER_ACTION_STATE; j++)
+	for (int j = 0; j < DEFINED_NUMBER_ACTION_STATE + DEFINED_NUMBER_PERFECT_STATE; j++)
 	{
 		cout << curActionState.stateIndex[j] << " ";
 	}
+	cout << endl;
 
+	m_current_transfer.NextActionState(curActionState);
+	m_current_transfer.NextPerfectState(curActionState);
+	cout << m_current_transfer.nextAction << " " << m_current_transfer.perfectAction << endl;
+	m_perfection = m_current_transfer.perfectAction;
 
-	if (true == m_current_transfer.NextActionState(curActionState))
+	if (1 == m_current_transfer.nextAction)
 	{
 		m_HealthAction.m_actionCounter.CountOnce();
 	}
-	cout << endl;
 
 	if (m_HealthAction.CheckDurationFinished())
 	{
@@ -344,7 +347,7 @@ void AIcoacher::AICoacherThread()
 			AcionStatePara curActionState = m_current_transfer.ComputeActionStateFromPosePoints(m_pose_queue);
 
 			//judge whether the action is counted 
-			if (true == m_current_transfer.NextActionState(curActionState))
+			if (1 == m_current_transfer.NextActionState(curActionState)[0])
 			{
 				m_HealthAction.m_actionCounter.CountOnce();
 

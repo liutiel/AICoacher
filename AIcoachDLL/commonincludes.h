@@ -99,4 +99,5 @@ struct PersonPosePara
 };
 
 //action state transfer
-const static int DEFINED_NUMBER_ACTION_STATE = 19;
+const static int DEFINED_NUMBER_ACTION_STATE = 17;
+const static int DEFINED_NUMBER_PERFECT_STATE = 17;

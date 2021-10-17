@@ -29,6 +29,7 @@ public:
 
 	void PutPointInfo(PersonPosePara pose, cv::Mat* pInImage=NULL);
 	void PutCountInfo(int count, cv::Mat* pInImage = NULL);
+	void PutTipsInfo(string tips, cv::Mat* pInImage = NULL);
 	void PutFPSInfo(double fps, cv::Mat* pInImage = NULL);
 
 	//【YHC-0421-1654】从外部获取输出路径，不要hardcode   

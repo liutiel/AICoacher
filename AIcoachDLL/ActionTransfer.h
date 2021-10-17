@@ -11,7 +11,7 @@
 
 struct AcionStatePara
 {
-	int stateIndex[DEFINED_NUMBER_ACTION_STATE];
+	int stateIndex[DEFINED_NUMBER_ACTION_STATE + DEFINED_NUMBER_PERFECT_STATE];
 
 };
 
@@ -22,16 +22,22 @@ private:
 	int m_actionNo;
 	int m_numStates;
 	vector<AcionStatePara> m_actionStateList;
-	int m_currentState;
+	int m_currentState = -1;
+	int m_currentPerfect = -1;
 
 public:
+	int nextAction;
+	int perfectAction;
+
 	void InitActionState(vector<AcionStatePara>& inActionStateList, string inActionName = "Testing", int inActionNo = 0);
 
 	bool CompareNextActionState(AcionStatePara& inNextActionState);
+	int* ExecuteActionStateTransfer();
+	int* NextActionState(AcionStatePara& inNextActionState);
 
-	bool ExecuteActionStateTransfer();
-
-	bool NextActionState(AcionStatePara& inNextActionState);
+	bool CompareNextPerfectState(AcionStatePara& inNextActionState);
+	void ExecutePerfectStateTransfer();
+	void NextPerfectState(AcionStatePara& inNextActionState);
 
 	bool InitActionStateFromFile(string inFileCSV);
 

@@ -26,8 +26,25 @@ bool AIcoacher::Init(int inClassID, std::string input_stream)
 	InitActionStateList(inFileName);
 	cout << "InitActionStateList(inFileName, curActionTransferList): " << endl;
 
+
+	string inClassName = "../../AIcoachDLL/models/class_editor/class00.txt";
 	// Reading course info
-	string inClassName = "../../AIcoachDLL/models/class_editor/class01.txt";
+	switch (m_curClassID)
+	{
+	case 0:
+		inClassName = "../../AIcoachDLL/models/class_editor/class00.txt";
+		break;
+	case 1:
+		inClassName = "../../AIcoachDLL/models/class_editor/class01.txt";
+		break;
+	case 2:
+		inClassName = "../../AIcoachDLL/models/class_editor/class02.txt";
+		break;
+	case 3:
+		inClassName = "../../AIcoachDLL/models/class_editor/class03.txt";
+		break;
+	}
+	
 	m_curClass.InitClassFromFile(inClassName);
 	cout << "curClass.InitClassFromFile(inClassName): " << inClassName << endl;
 	m_curClass.PrintInfo();

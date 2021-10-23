@@ -383,17 +383,7 @@
              </property>
              <item>
               <property name="text">
-               <string>Side Lateral Raise</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Y-Stretch</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Squat</string>
+               <string>Three Actions (SLR + YS + S)</string>
               </property>
              </item>
             </widget>

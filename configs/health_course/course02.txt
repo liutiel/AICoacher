@@ -1,0 +1,9 @@
+// The first line should be the course filename (not display name)
+// From the second line to the end of this file, should be the configuration file name, count limit, time limit (seconds) of each health actions. 
+// Count and time would be unlimited if they are specified as '0'
+// Lines starting with '//' and empty lines would be omitted in this file. 
+
+Aerobics
+action01 3 0
+action02 0 3
+action01 2 0

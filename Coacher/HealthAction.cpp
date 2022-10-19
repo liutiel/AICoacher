@@ -172,6 +172,8 @@ bool HealthAction::actionTransferCheck(std::array<std::array<double, 2>, PoseDet
         }
     }
 
+    return true;
+
 }
 
 // Pause or resume action

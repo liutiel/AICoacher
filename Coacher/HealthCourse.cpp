@@ -124,6 +124,8 @@ bool HealthCourse::internalNextHealthAction()
         this->singal_action_end_ptr->acquire();
         this->is_course_ended = this->nextHealthAction();
     } while (!this->is_course_ended);
+
+    return true;
 }
 
 // Receive the current frame and judge whether to transfer to the next key frame

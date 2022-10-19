@@ -6,8 +6,19 @@
 
 int main()
 {
-    Coacher atc = Coacher(10, "D:/GitHub/210203_AIcoach/AIcoachData/video/ThreeActions.mp4", "course01", 4, Coacher::DISPLAY_CV);
-    // Coacher atc = Coacher(8, 0, "", "", 4, Coacher::DISPLAY_CV);
+    // Handles for returning data asynchronously
+    std::binary_semaphore* handle_frame_refresh_ptr = new std::binary_semaphore(0);
+    std::binary_semaphore* handle_action_refresh_ptr = new std::binary_semaphore(0);
+    std::binary_semaphore* handle_course_end_ptr = new std::binary_semaphore(0);
+    std::binary_semaphore* handle_count_refresh_ptr = new std::binary_semaphore(0);
+    std::binary_semaphore* handle_time_refresh_ptr = new std::binary_semaphore(0);
+
+    Coacher atc = Coacher(10.0, "D:/GitHub/210203_AIcoach/AIcoachData/video/ThreeActions.mp4", "course01", 4,
+        handle_frame_refresh_ptr,
+        handle_action_refresh_ptr,
+        handle_course_end_ptr,
+        handle_count_refresh_ptr,
+        handle_time_refresh_ptr);
 
     atc.startCoacher();
 

@@ -93,4 +93,10 @@ private Q_SLOTS:
     void menuExitClicked();   // exit
     void menuAboutClicked();    // About dialog
 
+signals:
+    void signalUIChangeCourseEnded();
+
+private slots:
+// UI adjustment after internal events
+    void slotUIChangeCourseEnded();
 };

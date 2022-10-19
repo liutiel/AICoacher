@@ -9,6 +9,9 @@ AICoacherQT::AICoacherQT(QWidget *parent)
     this->ui.video_original->setStyleSheet("QLabel{background-color:rgb(0,0,0);}");
     this->ui.video_processed->setStyleSheet("QLabel{background-color:rgb(0,0,0);}");
 
+    // Connecting singals and slots
+    connect(this, SIGNAL(signalUIChangeCourseEnded()), this, SLOT(slotUIChangeCourseEnded()));
+
     // Obtaining Courses
     if (this->obtainCourseList() > 0)
     {
@@ -182,7 +185,7 @@ void AICoacherQT::menuAboutClicked()
     QString dialog_title = "About AIcoacher";
 
     std::stringstream dialog_info_stream;
-    dialog_info_stream << "AIcoacher v1.0" << std::endl;
+    dialog_info_stream << "AIcoacher version 1.1" << std::endl;
     dialog_info_stream << "Released by liutiel under MIT protocol. " << std::endl;
     dialog_info_stream << "GitHub: https://github.com/liutiel/AICoacher" << std::endl;
     QString dialog_info = QString::fromStdString(dialog_info_stream.str());
@@ -259,12 +262,6 @@ void AICoacherQT::courseEnded()
     this->is_training = false;
     this->coacher.~Coacher();
 
-    this->ui.pushButton_start->setEnabled(true);
-    this->ui.pushButton_suspend->setText("PAUSE");
-    this->ui.pushButton_suspend->setEnabled(false);
-    this->ui.pushButton_stop->setEnabled(false);
-    this->ui.comboBox_class->setEnabled(true);
-
     // Writing the log
     this->logWithTime("Training course \"" + this->course_name_list[this->selected_course_index] + "\" ended. ");
 
@@ -273,6 +270,8 @@ void AICoacherQT::courseEnded()
     this->ui.label_time_num->setText(QString::fromStdString("0"));
     this->ui.video_original->clear();
     this->ui.video_processed->clear();
+
+    emit signalUIChangeCourseEnded();
 
     this->thread_frame_refreshed.~thread();
     this->thread_action_refreshed.~thread();
@@ -405,11 +404,40 @@ int AICoacherQT::logWithTime(std::string log_content)
     time_t tt = time(NULL);
     tm* t = localtime(&tt);
 
-    std::stringstream time_string_stream("");
-    time_string_stream << "[" << std::setfill('0') << std::setw(2) << t->tm_hour << ":" << t->tm_min << ":" << t->tm_sec << "] ";
+    std::string time_string = "[";
+    time_string.append(std::to_string(t->tm_hour));
+    time_string.append(":");
+    if (t->tm_min >= 10)
+    {
+        time_string.append(std::to_string(t->tm_min));
+    }
+    else
+    {
+        time_string.append("0" + std::to_string(t->tm_min));
+    }
+    time_string.append(":");
+    if (t->tm_sec >= 10)
+    {
+        time_string.append(std::to_string(t->tm_sec));
+    }
+    else
+    {
+        time_string.append("0" + std::to_string(t->tm_sec));
+    }
+    time_string.append("] ");
 
     // Writing the log
-    ui.textBrowser_log->append(QString::fromStdString(time_string_stream.str() + log_content + "\n"));
+    ui.textBrowser_log->append(QString::fromStdString(time_string + log_content + "\n"));
     
     return 0;
+}
+
+// UI adjustment after internal events
+void AICoacherQT::slotUIChangeCourseEnded()
+{
+    this->ui.pushButton_start->setEnabled(true);
+    this->ui.pushButton_suspend->setText("PAUSE");
+    this->ui.pushButton_suspend->setEnabled(false);
+    this->ui.pushButton_stop->setEnabled(false);
+    this->ui.comboBox_class->setEnabled(true);
 }

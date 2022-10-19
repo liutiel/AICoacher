@@ -150,6 +150,8 @@ bool VideoIO::drawSkeleton(std::array<std::array<double, 2>, PoseDetector::DETEC
 		cv::putText(*frame_to_draw, output_text.str(), current_point, cv::FONT_HERSHEY_SIMPLEX, 1, point_colour, 1, cv::LINE_8, false);
 
 	}
+
+	return true;
 }
 
 // Display original frames using OpenCV

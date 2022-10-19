@@ -1,0 +1,8 @@
+// The first line should be the action name
+// From the second line to the end of this file, the first 10 numbers are for judging whether current frame reaches a key frame, and the last 10 numbers are for judging whether current frame is completed correctly.  
+// Lines starting with '//' and empty lines would be omitted in this file. 
+// 0: NO, 1: YES, -1: IGNORE. 
+
+Jumping Jacks
+-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 1 1 0 -1 -1 / -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 1 1 0 -1 -1
+-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 0 1 1 -1 -1 / -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 0 1 1 -1 -1

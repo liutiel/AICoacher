@@ -3,7 +3,8 @@
 // Count and time would be unlimited if they are specified as '0'
 // Lines starting with '//' and empty lines would be omitted in this file. 
 
-Aerobics
-action01 3 0
-action02 0 3
-action01 2 0
+Upper Training
+action_dumbbell_side_raises 0 10
+action_y_strech 0 10
+action_standing_wood_chops_r 0 10
+action_standing_wood_chops_l 0 10

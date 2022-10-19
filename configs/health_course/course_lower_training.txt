@@ -3,7 +3,12 @@
 // Count and time would be unlimited if they are specified as '0'
 // Lines starting with '//' and empty lines would be omitted in this file. 
 
-Course for Testing
-action01 3 0
-action02 0 3
-action01 0 0
+Lower Training
+action_squat 3 0
+action_lunge_squat_r 3 0
+action_lunge_squat_l 3 0
+action_alternating_side_leg_raises 3 0
+action_swing_arms_squat 3 0
+action_head_and_knee_twist 3 0
+action_alternating_knee_patting 3 0
+action_jumping_jacks 3 0

@@ -1,0 +1,18 @@
+// The first line should be the course filename (not display name)
+// From the second line to the end of this file, should be the configuration file name, count limit, time limit (seconds) of each health actions. 
+// Count and time would be unlimited if they are specified as '0'
+// Lines starting with '//' and empty lines would be omitted in this file. 
+
+Comprehensive Training
+action_dumbbell_side_raises 3 0
+action_y_strech 3 0
+action_squat 3 0
+action_lunge_squat_r 3 0
+action_lunge_squat_l 3 0
+action_alternating_side_leg_raises 3 0
+action_swing_arms_squat 3 0
+action_head_and_knee_twist 3 0
+action_standing_wood_chops_r 3 0
+action_standing_wood_chops_l 3 0
+action_alternating_knee_patting 3 0
+action_jumping_jacks 3 0

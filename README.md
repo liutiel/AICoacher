@@ -89,7 +89,7 @@ P.S. If you are trying to generate binaries running anywhere, please add **Qt**,
 6. Enjoy using AICoacher! 
 
 ## Quick Start Overview
-### The User Interface  
+### User Interface  
 
 <p align="left">
     <img src="./docs/mainUI.png" width="1000">
